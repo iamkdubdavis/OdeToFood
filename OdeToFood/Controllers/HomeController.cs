@@ -8,6 +8,7 @@ using PagedList;
 
 namespace OdeToFood.Controllers
 {
+    //[Authorize(Users = "kdavis@test.com")]
     public class HomeController : Controller
     {
         OdeToFoodDb _db = new OdeToFoodDb();
@@ -26,6 +27,15 @@ namespace OdeToFood.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+        [ChildActionOnly]
+        [OutputCache(Duration = 60)]
+        public ActionResult SayHello()
+        {
+            return Content("Hello");
+        }
+
+        //[AllowAnonymous]
+        [OutputCache(Duration = 5)]
         public ActionResult Index(string searchTerm = null, int page = 1)
         {
             var model =
