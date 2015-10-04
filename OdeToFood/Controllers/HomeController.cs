@@ -29,9 +29,11 @@ namespace OdeToFood.Controllers
         }
 
         //[AllowAnonymous]
-        [OutputCache(CacheProfile = "Long", VaryByHeader = "X-Requested-With", Location = OutputCacheLocation.Server)]
+        [OutputCache(CacheProfile = "Long", VaryByHeader = "X-Requested-With;Accept-Language", Location = OutputCacheLocation.Server)]
         public ActionResult Index(string searchTerm = null, int page = 1)
         {
+            var greeting = OdeToFood.Views.Home.Resources.Greeting;
+
             var model =
                 _db.Restaurants
                     .OrderByDescending(r => r.Reviews.Average(review => review.Rating))
