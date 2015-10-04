@@ -12,13 +12,6 @@
     <input type="submit" value="Search By Name" />
 </form>
 
-@{ 
-    var amount = 10.0M;
-    var someDate = new DateTime(2002, 7, 9);
-}
-
-<div>@OdeToFood.Views.Home.Resources.Greeting</div>
-<div>@amount.ToString("c")</div>
-<div>@someDate.ToShortDateString()</div>
+@ViewBag.MailServer
 
 @Html.Partial("_Restaurants", Model)
